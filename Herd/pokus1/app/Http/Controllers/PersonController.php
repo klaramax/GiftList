@@ -1,40 +1,46 @@
 <?php
 
-// PersonController
-public function create() {
-    return view('create-person'); // View for creating a new person
-}
+namespace App\Http\Controllers;
+use Illuminate\Http\Request;
+use App\Models\Person;
 
-public function store(Request $request) {
-    $request->validate([
-        'name' => 'required|string|max:255',
-    ]);
 
-    $person = new Person();
-    $person->name = $request->name;
-    $person->user_id = auth()->id(); // Assign person to logged-in user
-    $person->save();
+class PersonController {
+    public function create() {
+        return view('create-person'); // View for creating a new person
+    }
 
-    return redirect()->route('dashboard');
-}
+    public function store(Request $request) {
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
 
-public function edit(Person $person) {
-    return view('edit-person', compact('person')); // View for editing a person
-}
+        $person = new Person();
+        $person->name = $request->name;
+        $person->user_id = auth()->id(); // Assign person to logged-in user
+        $person->save();
 
-public function update(Request $request, Person $person) {
-    $request->validate([
-        'name' => 'required|string|max:255',
-    ]);
+        return redirect()->route('dashboard');
+    }
 
-    $person->name = $request->name;
-    $person->save();
+    public function edit(Person $person) {
+        return view('edit-person', compact('person')); // View for editing a person
+    }
 
-    return redirect()->route('dashboard');
-}
+    public function update(Request $request, Person $person) {
 
-public function destroy(Person $person) {
-    $person->delete();
+         $validated = $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+        $person->name = $validated['name'];
+        $person->save();
 
-    return redirect()->route('dashboard');
+        return redirect()->route('dashboard');
+    }
+
+    public function destroy(Person $person) {
+        $person->delete();
+
+        return redirect()->route('dashboard');
+    }
 }

@@ -27,25 +27,27 @@ class AuthController extends Controller
     // Handle the login request, validate credentials, and attempt to log in the user
     public function authenticate(Request $request): RedirectResponse
     {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
+        $messages = [
+        'email.required' => 'Zadejte prosím email.',
+        'email.email' => 'Zadaný email není platný.',
+        'password.required' => 'Vyplňte vaše heslo.',
+    ];
 
-        if (Auth::attempt($credentials)) {
+    $credentials = $request->validate([
+        'email' => ['required', 'email'],
+        'password' => ['required'],
+    ], $messages);
 
-            $request->session()->regenerate();
-
-            //session(['user_name' => Auth::user()->name]);
-
-            return redirect()->intended('dashboard');
-        }
-
-        return back()->withErrors([
-            'email' => 'Zadaný email není registrován.',
-            'password' => 'Zadané heslo není správné.',
-        ])->onlyInput('email');
+    if (Auth::attempt($credentials)) {
+        $request->session()->regenerate();
+        return redirect()->intended('dashboard');
     }
+
+    return back()->withErrors([
+        'email' => 'Zadaný email není registrován.',
+        'password' => 'Zadané heslo není správné.',
+    ])->onlyInput('email');
+}
 
     // Handle the registration request, validate input, and create a new user
     public function store(Request $request)

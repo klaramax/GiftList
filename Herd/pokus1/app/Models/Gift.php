@@ -15,10 +15,11 @@ class Gift extends Model
         'url',
         'where_bought',
         'user_id',
+        'person_id',
     ];
 
     /**
-     * Get the user that owns the gift.
+     * Get the user that created the gift
      */
     public function user()
     {
@@ -26,10 +27,10 @@ class Gift extends Model
     }
 
     /**
-     * Get the persons that this gift is assigned to.
+     * Get the person that this gift is assigned to.
      */
-    public function persons()
+    public function person()
     {
-        return $this->belongsToMany(Person::class);
+        return $this->belongsTo(Person::class);
     }
 }

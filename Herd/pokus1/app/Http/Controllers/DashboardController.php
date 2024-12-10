@@ -11,19 +11,10 @@ class DashboardController extends Controller
     // Display the dashboard for the logged-in user
     public function index()
     {
-    // Get the authenticated user
-    $user = auth()->user();
+    $persons = Person::where('user_id', auth()->id())->with('gifts')->get();
 
-    // Fetch the user's persons and gifts (return empty collections if none)
-    $persons = $user->persons ?? collect();
-    $gifts = $user->gifts ?? collect();
-
-    // Return the view with the data
-    return view('dashboard', [
-        'persons' => $persons,
-        'gifts' => $gifts,
-    ]);
-}
+    return view('dashboard', compact('persons'));
+    }
 
     // Show the form to create a new person
     public function createPerson()

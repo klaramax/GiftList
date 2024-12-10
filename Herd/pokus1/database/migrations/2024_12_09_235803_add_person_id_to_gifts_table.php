@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('persons', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->timestamps();
+        Schema::table('gifts', function (Blueprint $table) {
+            $table->foreignId('person_id')
+                ->constrained('persons')
+                ->onDelete('cascade');
         });
     }
 
@@ -23,7 +22,9 @@ return new class extends Migration
      * Reverse the migrations.
      */
     public function down(): void
-    {
-        Schema::dropIfExists('persons');
+     {
+        Schema::table('gifts', function (Blueprint $table) {
+            $table->dropColumn('person_id');
+        });
     }
 };

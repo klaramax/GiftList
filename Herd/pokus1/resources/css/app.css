@@ -4,5 +4,10 @@
 
 .font-festive {
     letter-spacing: 0.2rem;
+}
 
+body {
+    min-height: 100dvh;
+    display:grid;
+    grid-template-rows: auto 1fr;
 }

@@ -15,7 +15,7 @@
 
     </header>
 
-    <main class="lg:w-2/3 w-full mx-auto py-8">
+    <main class="lg:w-2/3 w-full mx-auto py-8 flex flex-col">
         {{ $slot }}
     </main>
 

@@ -29,6 +29,6 @@ class Person extends Model
      */
     public function gifts()
     {
-        return $this->belongsToMany(Gift::class);
+        return $this->hasMany(Gift::class);
     }
 }

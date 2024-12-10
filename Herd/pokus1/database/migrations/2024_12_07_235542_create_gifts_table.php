@@ -13,15 +13,15 @@ class CreateGiftsTable extends Migration
      */
     public function up()
     {
-        // Vytvoření tabulky gifts
         Schema::create('gifts', function (Blueprint $table) {
-            $table->id(); // Primární klíč
-            $table->string('name'); // Název dárku
-            $table->decimal('price', 8, 2)->nullable(); // Cena dárku, volitelná hodnota
-            $table->string('url')->nullable(); // URL dárku (např. odkaz na produkt)
-            $table->string('where_bought')->nullable(); // Kde byl dárek koupen
-            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Cizí klíč na uživatele, pokud je dárek přiřazený k uživateli
-            $table->timestamps(); // Sloupce created_at a updated_at
+            $table->id();
+            $table->string('name');
+            $table->decimal('price', 8, 2)->nullable();
+            $table->string('url')->nullable();
+            $table->string('where_bought')->nullable();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('person_id')->constrained('persons')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

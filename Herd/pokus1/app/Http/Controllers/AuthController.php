@@ -10,6 +10,12 @@ use App\Models\User;
 
 class AuthController extends Controller
 {
+
+    public function create()
+    {
+        return view('auth.register'); // Show the registration form
+    }
+
      public function index(Request $request)
     {
         if ($request->getRequestUri() === '/register') {

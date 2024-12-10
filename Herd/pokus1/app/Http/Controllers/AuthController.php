@@ -12,14 +12,14 @@ class AuthController extends Controller
 {
      public function index(Request $request)
     {
-        if ($request->getRequestUri() === '/login') {
+        if ($request->getRequestUri() === '/register') {
+                return view('auth.register');
+            }
 
+        else if ($request->getRequestUri() === '/login') {
             return view('auth.login');
         }
 
-        if ($request->getRequestUri() === '/register') {
-            return view('auth.register');
-        }
     abort(404);
     }
 

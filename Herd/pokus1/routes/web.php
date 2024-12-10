@@ -11,8 +11,8 @@ Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/login', [AuthController::class, 'index']);
 Route::post('/login', [AuthController::class, 'authenticate']);
 
-Route::get('/register', [AuthController::class, 'index']);
-Route::post('/register', [AuthController::class, 'store']);
+Route::get('/register', [AuthController::class, 'index'])->name('register');
+Route::post('/register', [AuthController::class, 'store'])->name('register-store');
 
 
 // Logout route

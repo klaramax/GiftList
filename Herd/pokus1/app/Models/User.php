@@ -46,14 +46,6 @@ class User extends Authenticatable
     }
 
     /**
-     * Get the wishlists for the user.
-     */
-    public function wishlists(): HasMany
-    {
-        return $this->hasMany(Wishlist::class);
-    }
-
-    /**
      * Get the persons associated with the user.
      */
     public function persons(): HasMany

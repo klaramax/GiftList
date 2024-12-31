@@ -18,7 +18,16 @@ style="background-image: url('{{ asset('images/DALL·E-gifts.jpg') }}');">
         <div class="w-full max-w-[350px] flex flex-col items-center justify-center">
             {{ $slot }}
         </div>
-        <a class="underline hover:no-underline text-green-900 text-md mt-8" href="{{ route('register') }}">Ještě nemáte účet? Zaregistrujte se</a>
+        <a class="underline hover:no-underline text-green-900 text-md mt-8" href="{{ route('register') }}"
+            @if(request()->is('register')) style="display:none" @endif>
+            Ještě nemáte účet? Zaregistrujte se
+        </a>
+
+            <a class="underline hover:no-underline text-green-900 text-md mt-8" href="{{ route('login') }}"
+            @if(request()->is('login')) style="display:none" @endif>
+            ← Zpět
+        </a>
+
     </div>
 
 </body>

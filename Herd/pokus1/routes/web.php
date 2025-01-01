@@ -5,10 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PersonController;
 use App\Http\Controllers\GiftController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
 
 // Route to display the main page for authenticated users
-Route::get('/', [DashboardController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Login routes
 Route::get('/login', [AuthController::class, 'index'])->name('login');
@@ -18,11 +18,9 @@ Route::post('/login', [AuthController::class, 'authenticate']);
 Route::get('/register', [AuthController::class, 'store'])->name('register');
 Route::post('/register', [AuthController::class, 'store'])->name('register');
 
-// Logout route
-Route::post('/logout', function () {
-    Auth::logout();
-    return redirect('/');
-})->name('logout');
+// Logout routes
+Route::get('/logout', function () {Auth::logout(); return redirect('/login');})->name('logout');
+Route::post('/logout', function () {Auth::logout(); return redirect('/login');})->name('logout');
 
 // User route
 Route::get('/user', [UserController::class, 'index']);

@@ -11,7 +11,7 @@
 
     <header class="w-full bg-white p-4 flex items-center justify-end shadow">
 
-       <img src="https://ui-avatars.com/api/?name={{auth()->user()->name}}" class="rounded-full w-8 h-8" alt="">
+       <img src="https://ui-avatars.com/api/?name={{ auth()->check() ? auth()->user()->name : 'Guest' }}" class="rounded-full w-8 h-8" alt="">
 
     </header>
 

@@ -6,14 +6,14 @@ use App\Models\Person;
 use App\Models\Gift;
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+class HomeController extends Controller
 {
-    // Display the dashboard for the logged-in user
+    // Display the home page for the logged-in user
     public function index()
     {
     $persons = Person::where('user_id', auth()->id())->with('gifts')->get();
 
-    return view('dashboard', compact('persons'));
+    return view('home', compact('persons'));
     }
 
     // Show the form to create a new person
@@ -36,8 +36,8 @@ class DashboardController extends Controller
         $person->user_id = auth()->id(); // Assign the person to the logged-in user
         $person->save();
 
-        // Redirect the user to the dashboard after successful creation
-        return redirect()->route('dashboard');
+        // Redirect the user to the home page after successful creation
+        return redirect()->route('home');
     }
 
     // Show the form to create a new gift
@@ -66,7 +66,7 @@ class DashboardController extends Controller
         $gift->user_id = auth()->id(); // Assign the gift to the logged-in user
         $gift->save();
 
-        // Redirect the user to the dashboard after successful creation
-        return redirect()->route('dashboard');
+        // Redirect the user to the home page after successful creation
+        return redirect()->route('home');
     }
 }

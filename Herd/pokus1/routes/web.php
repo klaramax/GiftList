@@ -25,8 +25,14 @@ Route::post('/logout', function () {Auth::logout(); return redirect('/login');})
 // User route
 Route::get('/user', [UserController::class, 'index']);
 
+// Person routes
 Route::get('/person/create', [PersonController::class, 'create'])->name('person.create');
 Route::post('/person', [PersonController::class, 'store'])->name('person.store');
+Route::get('/person/{id}/edit', [PersonController::class, 'edit'])->name('person.edit');
+Route::delete('/person/{id}', [PersonController::class, 'destroy'])->name('person.destroy');
 
+// Gift routes
 Route::get('/gift/create', [GiftController::class, 'create'])->name('gift.create');
 Route::post('/gift', [GiftController::class, 'store'])->name('gift.store');
+Route::get('/gift/{id}/edit', [GiftController::class, 'edit'])->name('gift.edit');
+Route::delete('/gift/{id}', [GiftController::class, 'destroy'])->name('gift.destroy');

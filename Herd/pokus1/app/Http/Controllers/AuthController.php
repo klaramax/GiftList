@@ -43,7 +43,7 @@ class AuthController extends Controller
         // Login the user after registration
         Auth::login($user);
 
-        // Redirect the user to the dashboard after successful registration
+        // Redirect the user to the home page after successful registration
         return redirect()->route('home')->with('success', 'Registrace proběhla úspěšně!');
     }
 

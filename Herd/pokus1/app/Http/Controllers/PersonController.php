@@ -20,7 +20,7 @@ class PersonController {
         $person->user_id = auth()->id(); // Assign person to logged-in user
         $person->save();
 
-        return redirect()->route('dashboard');
+        return redirect()->route('home');
     }
 
     public function edit(Person $person) {
@@ -35,12 +35,12 @@ class PersonController {
         $person->name = $validated['name'];
         $person->save();
 
-        return redirect()->route('dashboard');
+        return redirect()->route('home');
     }
 
     public function destroy(Person $person) {
         $person->delete();
 
-        return redirect()->route('dashboard');
+        return redirect()->route('home');
     }
 }

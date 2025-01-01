@@ -44,8 +44,8 @@ class GiftController extends Controller
         'user_id' => auth()->id(),
     ]);
 
-        // Redirect back to the dashboard or wherever appropriate
-        return redirect()->route('dashboard');
+        // Redirect back to the home page
+        return redirect()->route('home');
     }
 
     /**
@@ -63,13 +63,13 @@ class GiftController extends Controller
     {
         // Check if the logged-in user is the gift creator
         if ($gift->user_id !== auth()->id()) {
-            return redirect()->route('dashboard')->with('error', 'You do not have permission to delete this gift.');
+            return redirect()->route('home')->with('error', 'You do not have permission to delete this gift.');
         }
 
         // Delete the gift
         $gift->delete();
 
-        // Redirect back to the dashboard or wherever appropriate
-        return redirect()->route('dashboard');
+        // Redirect back to the home page or wherever appropriate
+        return redirect()->route('home');
     }
 }

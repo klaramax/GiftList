@@ -17,7 +17,7 @@
             <x-primary-button type="submit" style="min-width:400px;">Uložit</x-primary-button>
         </form>
 
-        <a href="{{ route('dashboard') }}" class="absolute top-8 -left-4 flex gap-1 items-center">
+        <a href="{{ route('home') }}" class="absolute top-8 -left-4 flex gap-1 items-center">
             <img src="{{ asset('images/back.svg') }}" alt="Back"/>
             <span class="text-green-800">Zpět</span>
         </a>
